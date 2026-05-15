@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kedai Rasa</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #fdfaf6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      header {
+        background: #ff914d;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+      }
+
+      .hero {
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        max-width: 600px;
+        margin: auto;
+        color: #666;
+      }
+
+      .menu-section {
+        padding: 40px 20px;
+      }
+
+      .menu-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+      }
+
+      .menu-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card-content h3 {
+        margin-bottom: 10px;
+      }
+
+      .price {
+        color: #ff914d;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      /* DETAIL PAGE */
+
+      .detail-page {
+        display: none;
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .detail-page img {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+
+      .detail-page h2 {
+        margin-bottom: 15px;
+        font-size: 2rem;
+      }
+
+      .back-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        background: #ff914d;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #222;
+        color: white;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .hero h2 {
+          font-size: 2rem;
+        }
+
+        header h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <h1>Kedai Rasa</h1>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+      </nav>
+    </header>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <h2>Makanan Enak, Harga Bersahabat 🍜</h2>
+      <p>
+        Selamat datang di Kedai Rasa. Temukan berbagai makanan favorit dengan
+        rasa rumahan yang lezat dan tampilan modern.
+      </p>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu-section" id="menu">
+      <h2 class="menu-title">Menu Favorit</h2>
+
+      <div class="menu-container">
+        <!-- CARD 1 -->
+        <div class="card" onclick="openDetail('burger')">
+          <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000"
+            alt="Burger"
+          />
+          <div class="card-content">
+            <h3>Cheese Burger</h3>
+            <p>Burger juicy dengan keju leleh premium.</p>
+            <div class="price">Rp 35.000</div>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card" onclick="openDetail('ramen')">
+          <img
+            src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1000"
+            alt="Ramen"
+          />
+          <div class="card-content">
+            <h3>Ramen Jepang</h3>
+            <p>Kuah gurih dengan mie kenyal khas Jepang.</p>
+            <div class="price">Rp 42.000</div>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card" onclick="openDetail('pizza')">
+          <img
+            src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000"
+            alt="Pizza"
+          />
+          <div class="card-content">
+            <h3>Pizza Italiano</h3>
+            <p>Pizza tipis dengan topping melimpah.</p>
+            <div class="price">Rp 55.000</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL BURGER -->
+    <section class="detail-page" id="burger">
+      <div class="back-btn" onclick="closeDetail()">← Kembali</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000"
+        alt="Burger"
+      />
+
+      <h2>Cheese Burger</h2>
+
+      <p>
+        Cheese Burger kami dibuat menggunakan daging sapi premium dengan tekstur
+        juicy dan lembut. Dipadukan dengan roti burger fresh, sayuran segar,
+        serta keju cheddar leleh yang memberikan rasa gurih sempurna.
+      </p>
+
+      <br />
+
+      <p>
+        Cocok dinikmati saat makan siang maupun malam bersama teman dan
+        keluarga.
+      </p>
+
+      <h3 style="margin-top: 20px; color: #ff914d">Harga: Rp 35.000</h3>
+    </section>
+
+    <!-- DETAIL RAMEN -->
+    <section class="detail-page" id="ramen">
+      <div class="back-btn" onclick="closeDetail()">← Kembali</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1000"
+        alt="Ramen"
+      />
+
+      <h2>Ramen Jepang</h2>
+
+      <p>
+        Ramen autentik dengan kuah kaldu ayam yang dimasak selama berjam-jam
+        sehingga menghasilkan rasa gurih yang kaya dan mendalam.
+      </p>
+
+      <br />
+
+      <p>
+        Dilengkapi topping telur, irisan ayam, dan daun bawang segar yang
+        membuat pengalaman makan semakin nikmat.
+      </p>
+
+      <h3 style="margin-top: 20px; color: #ff914d">Harga: Rp 42.000</h3>
+    </section>
+
+    <!-- DETAIL PIZZA -->
+    <section class="detail-page" id="pizza">
+      <div class="back-btn" onclick="closeDetail()">← Kembali</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000"
+        alt="Pizza"
+      />
+
+      <h2>Pizza Italiano</h2>
+
+      <p>
+        Pizza dengan adonan tipis khas Italia yang dipanggang sempurna.
+        Menggunakan saus tomat homemade dan topping premium pilihan.
+      </p>
+
+      <br />
+
+      <p>
+        Memiliki perpaduan rasa gurih, creamy, dan sedikit smoky yang cocok
+        untuk dinikmati bersama keluarga.
+      </p>
+
+      <h3 style="margin-top: 20px; color: #ff914d">Harga: Rp 55.000</h3>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 Kedai Rasa - Semua Hak Dilindungi</p>
+    </footer>
+
+    <script>
+      const detailPages = document.querySelectorAll(".detail-page");
+      const homeSection = document.querySelector(".hero");
+      const menuSection = document.querySelector(".menu-section");
+
+      function openDetail(id) {
+        homeSection.style.display = "none";
+        menuSection.style.display = "none";
+
+        detailPages.forEach((page) => {
+          page.style.display = "none";
+        });
+
+        document.getElementById(id).style.display = "block";
+
+        window.scrollTo(0, 0);
+      }
+
+      function closeDetail() {
+        detailPages.forEach((page) => {
+          page.style.display = "none";
+        });
+
+        homeSection.style.display = "block";
+        menuSection.style.display = "block";
+
+        window.scrollTo(0, 0);
+      }
+    </script>
+  </body>
+</html>
